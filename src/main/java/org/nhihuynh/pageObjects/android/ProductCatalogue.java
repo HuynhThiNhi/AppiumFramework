@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class ProductCatalogue extends BasePage {
+public class ProductCatalogue extends AndroidBasePage {
     protected AndroidDriver driver;
 
     @AndroidFindBy(id = "com.androidsample.generalstore:id/productAddCart")
@@ -30,8 +30,9 @@ public class ProductCatalogue extends BasePage {
         this.addToCart.get(idx).click();
     }
 
-    public void viewCart() {
+    public CartPage viewCart() {
         this.btnCart.click();
+        return new CartPage(this.driver);
     }
 
 

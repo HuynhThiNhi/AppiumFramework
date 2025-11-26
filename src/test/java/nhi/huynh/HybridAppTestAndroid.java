@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class HybridAppTest extends BaseTest{
+public class HybridAppTestAndroid extends AndroidBaseTest {
 
     @Test
     public void PurchaseAmountTest() throws InterruptedException {
@@ -15,19 +15,14 @@ public class HybridAppTest extends BaseTest{
         formPage.setCountry("Armenia");
         formPage.setGender("Female");
         formPage.setNameField("nhihuynh");
-        formPage.letShop();
+        ProductCatalogue productCatalogue = formPage.submitForm();
 
-
-        ProductCatalogue productCatalogue = new ProductCatalogue(this.driver);
         productCatalogue.addProductToCartByIndex(0);
         productCatalogue.addProductToCartByIndex(1);
-        productCatalogue.viewCart();
-
-        CartPage cartPage = new CartPage(this.driver);
-
+        CartPage cartPage = productCatalogue.viewCart();
 
         Assert.assertEquals(cartPage.getTotalPurchaseAmount(), cartPage.calculateTotalPrice());
-        cartPage.clickTermBtn();
+        cartPage.acceptTermBtn();
         cartPage.selectSendingMail();
         cartPage.confirmOrder();
 

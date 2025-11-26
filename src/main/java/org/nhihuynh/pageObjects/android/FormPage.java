@@ -4,12 +4,11 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.nhihuynh.utils.AndroidAction;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-public class FormPage extends BasePage {
-    AndroidDriver driver;
+public class FormPage extends AndroidBasePage {
+//    AndroidDriver driver;
 
     /**
      * removing line  super(driver) causing error "There is no parameterless constructor available in 'AndroidAction'" because
@@ -35,7 +34,7 @@ public class FormPage extends BasePage {
     private WebElement spinnerCountry;
 
     @AndroidFindBy(id = "com.androidsample.generalstore:id/btnLetsShop")
-    private WebElement letsShop;
+    private WebElement submitFormBtn;
 
 
     public void setNameField(String name) {
@@ -56,8 +55,9 @@ public class FormPage extends BasePage {
         }
     }
 
-    public void letShop() {
-        letsShop.click();
+    public ProductCatalogue submitForm() {
+        submitFormBtn.click();
+        return new ProductCatalogue((AndroidDriver) this.driver);
     }
 
 }

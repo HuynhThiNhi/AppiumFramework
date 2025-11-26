@@ -4,7 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
-import org.nhihuynh.utils.WaitUtil;
+import org.nhihuynh.pageObjects.android.FormPage;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -12,10 +12,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
-public class BaseTest {
+public class AndroidBaseTest {
     public AndroidDriver driver;
     public AppiumDriverLocalService service;
-    public WaitUtil waitUtil;
+    public FormPage formPage;
 
     @BeforeClass
     public void ConfigureAppium() throws MalformedURLException {
@@ -37,7 +37,7 @@ public class BaseTest {
         options.setCapability("chromedriverUseSystemExecutable", false);
         driver = new AndroidDriver(new URL("http://127.0.0.1:4724"), options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        waitUtil = new WaitUtil(this.driver);
+        formPage = new FormPage(this.driver);
     }
 
     @AfterClass

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class CartPage extends BasePage{
+public class CartPage extends AndroidBasePage {
     protected AndroidDriver driver;
 
     @AndroidFindBy(id = "com.androidsample.generalstore:id/toolbar_title")
@@ -61,7 +61,7 @@ public class CartPage extends BasePage{
         return Double.parseDouble(totalPurchaseAmount.getText().substring(2));
     }
 
-    public void clickTermBtn() {
+    public void acceptTermBtn() {
         this.androidAction.longPressAction(termBtn);
         this.closeTermOfServiceBtn.click();
     }

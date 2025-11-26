@@ -5,12 +5,12 @@ import io.appium.java_client.android.AndroidDriver;
 import org.nhihuynh.utils.AndroidAction;
 import org.nhihuynh.utils.WaitUtil;
 
-public class BasePage {
+public class AndroidBasePage {
     protected AppiumDriver driver;
     protected WaitUtil waitUtil;
     protected AndroidAction androidAction;
 
-    public BasePage(AppiumDriver driver) {
+    public AndroidBasePage(AppiumDriver driver) {
         this.driver = driver;
         // Every page object that's created will
         // automatically get its own WaitUtil instance.
