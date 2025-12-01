@@ -1,12 +1,17 @@
 package nhi.huynh;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import io.appium.java_client.android.Activity;
+import org.nhihuynh.models.User;
 import org.nhihuynh.pageObjects.android.CartPage;
-import org.nhihuynh.pageObjects.android.FormPage;
 import org.nhihuynh.pageObjects.android.ProductCatalogue;
+import org.nhihuynh.utils.JsonUtil;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 
 public class HybridAppTestAndroid extends AndroidBaseTest {
@@ -27,13 +32,11 @@ public class HybridAppTestAndroid extends AndroidBaseTest {
 
     }
 
-    @Test
-    public void PurchaseAmountTest() throws InterruptedException {
-        FormPage formPage = new FormPage(this.driver);
-        formPage.setGender("Female");
-        formPage.setCountry("Armenia");
-
-        formPage.setNameField("nhihuynh");
+    @Test(dataProvider = "getData")
+    public void PurchaseAmountTest(User user) throws InterruptedException {
+        formPage.setCountry(user.getCountry());
+        formPage.setGender(user.getName());
+        formPage.setNameField(user.getName());
         ProductCatalogue productCatalogue = formPage.submitForm();
 
         productCatalogue.addProductToCartByIndex(0);
@@ -61,12 +64,11 @@ public class HybridAppTestAndroid extends AndroidBaseTest {
 
     }
 
-    @Test
-    public void fillFormTest() throws InterruptedException {
-        FormPage formPage = new FormPage(this.driver);
-        formPage.setCountry("Armenia");
-        formPage.setGender("Female");
-        formPage.setNameField("nhihuynh");
+    @Test(dataProvider = "getData")
+    public void fillFormTest(User user) throws InterruptedException {
+        formPage.setCountry(user.getCountry());
+        formPage.setGender(user.getName());
+        formPage.setNameField(user.getName());
         ProductCatalogue productCatalogue = formPage.submitForm();
 
         productCatalogue.addProductToCartByIndex(0);
@@ -75,5 +77,18 @@ public class HybridAppTestAndroid extends AndroidBaseTest {
 
         Assert.assertEquals(cartPage.getTotalPurchaseAmount(), cartPage.calculateTotalPrice());
 
+    }
+
+    @DataProvider
+    public  Object[][] getData() {
+        List<User> dataList = JsonUtil.getJsonData(System.getProperty("user.dir") + "/src/main/resources/testdata/eCommerce.json", new TypeReference<List<User>>() {
+        });
+
+        // Convert List to 2D Array (Required by TestNG)
+        Object[][] data = new Object[dataList.size()][1];
+        for (int i = 0; i < dataList.size(); i++) {
+            data[i][0] = dataList.get(i);
+        }
+        return data;
     }
 }
