@@ -17,8 +17,8 @@ public class FormPage extends AndroidBasePage {
      * */
     public FormPage(AndroidDriver driver) {
         super(driver);
-        this.driver = driver;
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+//        this.driver = driver;
+        PageFactory.initElements(new AppiumFieldDecorator(this.driver), this);
     }
 
     @AndroidFindBy(id = "com.androidsample.generalstore:id/nameField")
@@ -41,7 +41,7 @@ public class FormPage extends AndroidBasePage {
         nameField.sendKeys(name);
     }
 
-    public void setCountry(String name) {
+    public void setCountry(String name) throws InterruptedException {
         spinnerCountry.click();
         androidAction.scrollToText(name);
         driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='" + name + "']")).click();

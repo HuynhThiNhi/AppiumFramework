@@ -50,7 +50,7 @@ public class AndroidAction {
     }
 
     public void scrollToText(String text) {
-        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + text + "\"));"));
+        this.driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + text + "\"));"));
     }
 
     public void swipeAction(WebElement element, String direction) {
