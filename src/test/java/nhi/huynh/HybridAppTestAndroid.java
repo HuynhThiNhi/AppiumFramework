@@ -2,6 +2,7 @@ package nhi.huynh;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.appium.java_client.android.Activity;
+import io.appium.java_client.android.AndroidDriver;
 import org.nhihuynh.models.User;
 import org.nhihuynh.pageObjects.android.CartPage;
 import org.nhihuynh.pageObjects.android.ProductCatalogue;
@@ -14,12 +15,12 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 
-public class HybridAppTestAndroid extends AndroidBaseTest {
+public class HybridAppTestAndroid extends BaseTest {
 
     @BeforeMethod
     public void preSetUp() {
 //        wait for the UI to be fully loaded before interacting.
-        driver.startActivity(new Activity(
+        ((AndroidDriver)driver).startActivity(new Activity(
                 "com.androidsample.generalstore",
                 "com.androidsample.generalstore.MainActivity"
         ));
