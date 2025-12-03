@@ -2,17 +2,21 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Appium Framework Test Suite">
 
+    <listeners>
+        <listener class-name="org.nhihuynh.reports.CustomListener" />
+    </listeners>
+
     <test name="IOS basic">
         <classes>
             <class name="nhi.huynh.IOSBasicTest" />
         </classes>
     </test> <!-- Test -->
 
-    <test name="Hybrid App Test">
-        <classes>
-            <class name="nhi.huynh.HybridAppTestAndroid" />
-        </classes>
-    </test> <!-- Test -->
+<!--    <test name="Hybrid App Test">-->
+<!--        <classes>-->
+<!--            <class name="nhi.huynh.HybridAppTestAndroid" />-->
+<!--        </classes>-->
+<!--    </test> &lt;!&ndash; Test &ndash;&gt;-->
 
 
 </suite> <!-- Suite -->

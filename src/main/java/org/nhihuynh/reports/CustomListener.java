@@ -1,7 +1,8 @@
 package org.nhihuynh.reports;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import io.appium.java_client.AppiumDriver;
+import org.nhihuynh.utils.ScreenShotUtil;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -11,9 +12,6 @@ public class CustomListener implements ITestListener{
 
     @Override
     public void onTestStart(ITestResult result) {
-//        ExtentTest extentTest = extentReport.createTest(result.getMethod().getMethodName())
-//                .assignCategory(result.getTestClass().getRealClass().getSimpleName());
-//        test.set(extentTest);
         ExtentTestManager.createTest(result.getMethod().getMethodName(), result.getTestClass().getRealClass().getSimpleName());
 
         ExtentTestManager.getTest().log(Status.INFO, "Test Started: " + result.getMethod().getMethodName());
@@ -27,7 +25,19 @@ public class CustomListener implements ITestListener{
 
     @Override
     public void onTestFailure(ITestResult result) {
-        ExtentTestManager.getTest().log(Status.FAIL, result.getThrowable());
+        try {
+            AppiumDriver driver = (AppiumDriver) (result.getTestClass().getRealClass().getField("driver")).get(result.getInstance());
+            String base64Screenshot = ScreenShotUtil.getBase64Screenshot(driver);
+            ExtentTestManager.getTest().fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
+
+        } catch (NoSuchFieldException e) {
+            ExtentTestManager.getTest().log(Status.INFO, "No such field driver");
+            ExtentTestManager.getTest().fail(result.getThrowable());
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            ExtentTestManager.getTest().fail(result.getThrowable());
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -47,8 +57,6 @@ public class CustomListener implements ITestListener{
 
     @Override
     public void onStart(ITestContext context) {
-//        String reportPath = System.getProperty("user.dir") + "/extent-reports/index.html";
-//        ExtentTestManager.getExtentReports(reportPath);
     }
 
     @Override

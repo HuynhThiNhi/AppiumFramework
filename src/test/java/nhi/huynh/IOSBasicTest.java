@@ -10,7 +10,7 @@ public class IOSBasicTest extends IOSBaseTest{
 
         AlertViewPage alertViewPage = this.homePage.clickOnAlertViews();
         String actualMsg = alertViewPage.getConfirmMsg();
-        Assert.assertEquals(actualMsg, "A message should be a short, complete sentence.");
+        Assert.assertEquals(actualMsg, "A message should be a short, complete sentence");
         alertViewPage.acceptMsg();
     }
 }
