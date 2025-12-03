@@ -1,6 +1,7 @@
 package org.nhihuynh.pageObjects.android;
 
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -17,7 +18,7 @@ public class FormPage extends AndroidBasePage {
      * Java tries to call the parent constructor automatically, like this: super();
      * But your parent class (androidAction) does not have a constructor with no arguments.
      * */
-    public FormPage(AndroidDriver driver) {
+    public FormPage(AppiumDriver driver) {
         super(driver);
 //        this.driver = driver;
         // THE CRITICAL LINE:
