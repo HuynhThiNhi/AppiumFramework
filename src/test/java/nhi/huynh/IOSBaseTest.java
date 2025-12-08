@@ -17,7 +17,7 @@ public class IOSBaseTest {
     public AppiumDriverLocalService service;
     public HomePage homePage;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void ConfigureAppium() throws MalformedURLException {
 
         service = new AppiumServiceBuilder()
@@ -39,7 +39,7 @@ public class IOSBaseTest {
         homePage = new HomePage(this.driver);
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
         driver.quit();
         service.stop();

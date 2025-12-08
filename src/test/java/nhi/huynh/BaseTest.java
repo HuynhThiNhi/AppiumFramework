@@ -18,7 +18,7 @@ public class BaseTest {
     public AppiumDriverLocalService service;
     public FormPage formPage;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setUp() throws IOException {
         Properties properties = ConfigUtil.loadConfig();
         service = AppiumUtil.startAppiumService(properties.getProperty("address"), Integer.parseInt(properties.getProperty("port")));
@@ -27,7 +27,7 @@ public class BaseTest {
         formPage = new FormPage(this.driver);
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
         if (this.driver != null) {
             this.driver.quit();

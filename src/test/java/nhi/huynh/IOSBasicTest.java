@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class IOSBasicTest extends IOSBaseTest{
-    @Test
+    @Test(groups = {"os.ios"})
     public void BasicsTest() {
 
         AlertViewPage alertViewPage = this.homePage.clickOnAlertViews();

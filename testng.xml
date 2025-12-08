@@ -7,6 +7,16 @@
     </listeners>
 
     <test name="IOS basic">
+        <groups>
+            <define name="Run IOS tests">
+                <include name="os.ios"/>
+                <!--            <include name="level.smoke"/>-->
+            </define>
+            <run>
+                <include name="Run IOS tests"/>
+                <!--            <exclude name="status.flaky"/>  <exclude name="status.wip"/>-->
+            </run>
+        </groups>
         <classes>
             <class name="nhi.huynh.IOSBasicTest" />
         </classes>
