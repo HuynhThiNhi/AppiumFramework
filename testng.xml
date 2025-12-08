@@ -6,27 +6,27 @@
         <listener class-name="org.nhihuynh.reports.CustomListener" />
     </listeners>
 
-    <test name="IOS basic">
-        <groups>
-            <define name="Run IOS tests">
-                <include name="os.ios"/>
-                <!--            <include name="level.smoke"/>-->
-            </define>
-            <run>
-                <include name="Run IOS tests"/>
-                <!--            <exclude name="status.flaky"/>  <exclude name="status.wip"/>-->
-            </run>
-        </groups>
-        <classes>
-            <class name="nhi.huynh.IOSBasicTest" />
-        </classes>
-    </test> <!-- Test -->
-
-<!--    <test name="Hybrid App Test">-->
+<!--    <test name="IOS basic">-->
+<!--        <groups>-->
+<!--            <define name="Run IOS tests">-->
+<!--                <include name="os.ios"/>-->
+<!--                &lt;!&ndash;            <include name="level.smoke"/>&ndash;&gt;-->
+<!--            </define>-->
+<!--            <run>-->
+<!--                <include name="Run IOS tests"/>-->
+<!--                &lt;!&ndash;            <exclude name="status.flaky"/>  <exclude name="status.wip"/>&ndash;&gt;-->
+<!--            </run>-->
+<!--        </groups>-->
 <!--        <classes>-->
-<!--            <class name="nhi.huynh.HybridAppTestAndroid" />-->
+<!--            <class name="nhi.huynh.IOSBasicTest" />-->
 <!--        </classes>-->
 <!--    </test> &lt;!&ndash; Test &ndash;&gt;-->
+
+    <test name="Hybrid App Test">
+        <classes>
+            <class name="nhi.huynh.HybridAppTestAndroid" />
+        </classes>
+    </test> <!-- Test -->
 
 
 </suite> <!-- Suite -->
